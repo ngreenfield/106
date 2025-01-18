@@ -1,0 +1,16 @@
+main{
+    display: flex;
+    height: 100vh;
+}
+
+#list{
+    background-color: aqua;
+    flex: 2;
+}
+
+#form{
+    background-color: lightpink;
+    flex: 2;
+}
+
+
