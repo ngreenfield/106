@@ -33,6 +33,29 @@ function saveTask() {
     displayTask(taskToSave);
 }
 
+function loadTask(){
+    $.ajax({
+        type: "GET", 
+        url: "http://fsdiapi.azurewebsites.net/api/tasks",
+        success: function(response){
+            console.log(response);
+            let data = JSON.parse(response);
+            console.log(data);
+            //console.log only those elements that werre created by you on the server
+            for(let i=0;i<data.length;i++){
+                let task = data[i];
+                if(task.name==="nickg"){
+                    displayTask(task)
+                    console.log(task);
+                }
+            }
+        },  
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
 function displayTask(task) {
     let syntax = `<div class='task' style='background-color: ${task.color};'>
     <div class='info'>
@@ -65,6 +88,8 @@ function testFunction(){
 
 function init() {
     console.log('init');
+    //load data
+    loadTask();
     // Hook events
     $("#btnSave").click(saveTask);
 }
